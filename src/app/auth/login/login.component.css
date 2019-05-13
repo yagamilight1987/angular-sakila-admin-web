@@ -1,0 +1,47 @@
+.logo-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.logo-container img {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .logo-container {
+    width: 60%;
+  }
+}
+
+.login-form {
+  width: 100%;
+}
+
+.login-form-logo {
+  font-size: 60px;
+  color: #333333;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.login-form-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 30px;
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  display: block;
+}
