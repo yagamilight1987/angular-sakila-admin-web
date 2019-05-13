@@ -9,6 +9,6 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(data: LoginModel): Observable<any> {
-    return this.http.post(`${AppConstants.API_BASE_URL}/login`, data);
+    return this.http.post(`${AppConstants.API_BASE_URL}auth/token`, data);
   }
 }

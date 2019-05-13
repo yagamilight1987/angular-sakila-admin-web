@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { AuthService } from '../services/auth.service';
-import { LocalStorageService } from '../../services';
+import { SessionStorageService } from '../../services';
 import { AppConstants } from '../../app.constants';
 import { LoginModel } from '../models';
 
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private localStorageService: LocalStorageService,
+    private sessionStorageService: SessionStorageService
   ) {
     this.appEnv = AppConstants.APP_ENV;
     this.appVersion = AppConstants.APP_VERSION;
@@ -33,15 +33,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loading = false;
     this.form = new FormGroup({});
-    this.model = { username: '', password: '' };
+    this.model = { email: '', password: '' };
     this.fields = [
       {
-        key: 'username',
+        key: 'email',
         type: 'input',
         templateOptions: {
-          type: 'text',
-          label: 'Username',
-          placeholder: 'Enter username',
+          type: 'email',
+          label: 'Email',
+          placeholder: 'Enter email',
           required: true,
           attributes: {
             autocomplete: 'new-password'
@@ -66,32 +66,28 @@ export class LoginComponent implements OnInit {
 
   submit(model: LoginModel) {
     if (this.form.valid) {
+      this.errorMessage = '';
       this.loading = true;
       this.authService.login(model).subscribe(
-        (result: any) => {
-          this.localStorageService.set(
+        (response: any) => {
+          this.sessionStorageService.set(
             AppConstants.SESSION_STORAGE_KEYS.token,
-            result
+            response.accessToken
+          );
+          this.sessionStorageService.set(
+            AppConstants.SESSION_STORAGE_KEYS.userData,
+            {
+              expiresIn: response.expiresIn,
+              id: response.id,
+              email: response.email
+            }
           );
           this.loading = false;
           this.router.navigate([AppConstants.APP_NAVIGATION_URLS.landing]);
         },
-        (message: any) => {
+        (error: any) => {
           this.loading = false;
-          if (message != null) {
-            // error
-            this.errorMessage = message;
-            if (this.errorMessage === 'User is not confirmed.') {
-              this.router.navigate([
-                AppConstants.APP_NAVIGATION_URLS.registration,
-                this.model.username
-              ]);
-            } else if (this.errorMessage === 'User needs to set password.') {
-              this.router.navigate([
-                AppConstants.APP_NAVIGATION_URLS['new-password']
-              ]);
-            }
-          }
+          this.errorMessage = error.error.message;
         }
       );
     }
