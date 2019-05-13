@@ -1,19 +1,14 @@
 <form class="login-form">
   <span class="login-form-logo">
-    <img
-      src="assets/img/logo.png"
-      alt="Disk Rentalz"
-      style="height: 50px; width: 100px;"
-    />
+    <img src="assets/img/logo.png" alt="Disk Rentalz" class="logo-img" />
   </span>
-  <span class="login-form-title">
-    Log in
-  </span>
+  <div class="login-form-pad"></div>
   <formly-form [form]="form" [fields]="fields" [model]="model">
-    <div class="form-group">
+    <div class="submit-btn">
       <button
+        mat-raised-button
+        color="primary"
         type="submit"
-        class="btn btn-primary pull-right"
         [disabled]="!form.valid || loading"
       >
         <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="loading"></i>
@@ -23,8 +18,7 @@
   </formly-form>
   <div class="clearfix"></div>
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-  <div class="version text-center">
-    <hr />
+  <div class="version">
     <div>{{ appEnv | uppercase }}-v{{ appVersion }}</div>
   </div>
 </form>

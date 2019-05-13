@@ -22,3 +22,25 @@ export class AppConstants {
   static readonly APP_VERSION: string = environment.version;
   static readonly APP_ENV: string = environment.env;
 }
+
+export function minlengthValidationMessage(err, field) {
+  return `Should have atleast ${field.templateOptions.minLength} characters`;
+}
+
+export function maxlengthValidationMessage(err, field) {
+  return `This value should be less than ${
+    field.templateOptions.maxLength
+  } characters`;
+}
+
+export function minValidationMessage(err, field) {
+  return `This value should be more than ${field.templateOptions.min}`;
+}
+
+export function maxValidationMessage(err, field) {
+  return `This value should be less than ${field.templateOptions.max}`;
+}
+
+export function noWhitespaceValidationMessage(err, field) {
+  return 'This field cannot be left blank.';
+}

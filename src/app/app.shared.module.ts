@@ -6,9 +6,10 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { httpInterceptorProviders } from './interceptors';
 import { EscapeHtmlPipe } from './pipes';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, FormlyModule.forRoot()],
+  imports: [CommonModule, HttpClientModule],
   providers: [...httpInterceptorProviders],
   declarations: [EscapeHtmlPipe],
   exports: [
@@ -16,7 +17,8 @@ import { EscapeHtmlPipe } from './pipes';
     ReactiveFormsModule,
     FormlyModule,
     FormlyMaterialModule,
-    EscapeHtmlPipe
+    EscapeHtmlPipe,
+    MatButtonModule
   ]
 })
 export class AppSharedModule {}

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppSharedModule } from '../app.shared.module';
-// import { AppFormlyModule } from '../components/app-formly/app-formly.module';
+import { AppFormlyModule } from '../components/app-formly/app-formly.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthService } from './services';
 import { LandingComponent } from './landing/landing.component';
@@ -13,12 +13,10 @@ import { LoginComponent } from './login/login.component';
 // import { ConfirmForgotNewPasswordComponent } from './confirm-forgot-new-password/confirm-forgot-new-password.component';
 
 @NgModule({
-  imports: [CommonModule, AuthRoutingModule, AppSharedModule
-    // , AppFormlyModule
-  ],
+  imports: [CommonModule, AuthRoutingModule, AppSharedModule, AppFormlyModule],
   declarations: [
     LandingComponent,
-    LoginComponent,
+    LoginComponent
     // ForgotPasswordComponent,
     // ConfirmRegistrationComponent,
     // ResendCodeComponent,
