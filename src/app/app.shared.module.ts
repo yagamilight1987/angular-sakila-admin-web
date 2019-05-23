@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
@@ -20,7 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
-  providers: [...httpInterceptorProviders],
+  providers: [...httpInterceptorProviders, DatePipe],
   declarations: [EscapeHtmlPipe, CheckDatePipe],
   exports: [
     FormsModule,

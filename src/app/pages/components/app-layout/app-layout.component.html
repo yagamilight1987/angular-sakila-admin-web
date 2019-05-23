@@ -1,4 +1,4 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+<div class="app-layout-container" [class.example-is-mobile]="mobileQuery.matches">
   <!-- Main Header Start -->
   <mat-toolbar color="primary">
     <button mat-icon-button (click)="appSideNav.toggle()">
@@ -24,10 +24,10 @@
   <!-- Sidenav Start-->
   <mat-sidenav-container
     class="app-layout-sidenav-container"
-    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
   >
     <mat-sidenav
       #appSideNav
+      [opened]="!mobileQuery.matches"
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
@@ -40,5 +40,5 @@
   </mat-sidenav-container>
   <!-- Sidenav End-->
   <!-- Main Footer -->
-  <!-- <app-footer></app-footer> -->
+  <app-footer></app-footer>
 </div>

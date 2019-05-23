@@ -15,7 +15,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div>
+  <div *ngIf="data && data.length > 0">
     <table mat-table [dataSource]="data" class="mat-elevation-z8">
       <ng-container
         *ngFor="let columnDef of columnDefinitions"

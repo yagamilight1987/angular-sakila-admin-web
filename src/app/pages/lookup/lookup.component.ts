@@ -20,14 +20,19 @@ export class LookupComponent implements OnInit {
   }
 
   onLookupTypeSelectChanged(event: MatSelectChange) {
-    this.lookupService
-      .getLookupData(event.value)
-      .subscribe((response: any[]) => {
-        this.columnDefinitions = [];
-        Object.keys(response[0]).map(item => {
-          this.columnDefinitions.push(item);
+    if (event.value) {
+      this.lookupService
+        .getLookupData(event.value)
+        .subscribe((response: any[]) => {
+          this.columnDefinitions = [];
+          Object.keys(response[0]).map(item => {
+            this.columnDefinitions.push(item);
+          });
+          this.data = response;
         });
-        this.data = response;
-      });
+    } else  {
+      this.columnDefinitions = [];
+      this.data = [];
+    }
   }
 }
