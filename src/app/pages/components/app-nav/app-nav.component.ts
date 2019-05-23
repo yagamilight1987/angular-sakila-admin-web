@@ -14,15 +14,15 @@ export class AppNavComponent implements OnInit {
     this.navItems = [
       {
         title: 'Home',
-        link: '/'
+        link: '/landing'
       },
       {
         title: 'Dashoard',
-        link: '/landing/dashoard'
+        link: '/landing/dashboard'
       },
       {
-        title: 'Langulage',
-        link: '/landing/language'
+        title: 'Lookup',
+        link: '/landing/lookup'
       }
     ];
   }

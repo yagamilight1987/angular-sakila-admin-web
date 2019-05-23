@@ -1,0 +1,32 @@
+<div>
+  <div>
+    <mat-form-field>
+      <mat-label>Lookup Type</mat-label>
+      <mat-select (selectionChange)="onLookupTypeSelectChanged($event)">
+        <mat-option [value]="">
+          Select
+        </mat-option>
+        <mat-option
+          *ngFor="let type of lookupTypes$ | async"
+          [value]="type.route"
+        >
+          {{ type.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+      <ng-container
+        *ngFor="let columnDef of columnDefinitions"
+        [matColumnDef]="columnDef"
+      >
+        <th mat-header-cell *matHeaderCellDef>{{ columnDef | titlecase }}</th>
+        <td mat-cell *matCellDef="let element">{{ element[columnDef] | checkDate }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnDefinitions"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnDefinitions"></tr>
+    </table>
+  </div>
+</div>

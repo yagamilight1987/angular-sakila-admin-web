@@ -11,6 +11,8 @@ import {
 } from './components';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LandingComponent } from './landing/landing.component';
+import { LookupComponent } from './lookup/lookup.component';
+import { UserService, LookupService } from './services';
 
 @NgModule({
   imports: [
@@ -25,8 +27,9 @@ import { LandingComponent } from './landing/landing.component';
     AppNavComponent,
     AppSearchComponent,
     LandingComponent,
-    DashboardComponent
+    DashboardComponent,
+    LookupComponent
   ],
-  providers: []
+  providers: [UserService, LookupService]
 })
 export class AppPagesModule {}

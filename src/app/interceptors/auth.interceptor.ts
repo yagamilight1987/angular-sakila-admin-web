@@ -6,14 +6,19 @@ import {
   HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HelperService } from '../services';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  constructor(private helperService: HelperService) {}
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const accessToken = ''; // get access token
+    const accessToken = this.helperService.isAuthenticated
+      ? this.helperService.token
+      : '';
     if (!accessToken) {
       return next.handle(req);
     }

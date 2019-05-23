@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'landing',
     loadChildren: './pages/app-pages.module#AppPagesModule',
-    // canActivate: [AuthGaurd]
+    canActivate: [AuthGaurd]
   },
   { path: '**', redirectTo: 'auth' }
 ];
