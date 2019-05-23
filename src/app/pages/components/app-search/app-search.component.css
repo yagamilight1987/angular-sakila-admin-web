@@ -1,0 +1,9 @@
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
+mat-form-field.mat-form-field {
+  font-size: 14px;
+  width: 30%;
+}

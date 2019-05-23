@@ -25,16 +25,3 @@ $angular-sakila-admin-web-theme: mat-light-theme($angular-sakila-admin-web-prima
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($angular-sakila-admin-web-theme);
-
-/* Materialize */
-
-// Color
-@import '../node_modules/materialize-css/sass/components/color-variables';
-@import '../node_modules/materialize-css/sass/components/color-classes';
-
-// Variables;
-@import '../node_modules/materialize-css/sass/components/variables';
-
-// Reset
-@import '../node_modules/materialize-css/sass/components/normalize';
-@import '../node_modules/materialize-css/sass/components/global';

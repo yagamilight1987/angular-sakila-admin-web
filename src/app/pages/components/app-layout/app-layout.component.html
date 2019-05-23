@@ -1,0 +1,44 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <!-- Main Header Start -->
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="appSideNav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a routerLink="/" class="brand-logo">
+      <img src="assets/img/logo.png" alt="Disk Rentalz" class="logo-img" />
+    </a>
+    <span class="flex-container">
+      <app-search></app-search>
+    </span>
+    <span>
+      <button mat-button [matMenuTriggerFor]="userMenu">
+        Hello {{ user.email }}<mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #userMenu="matMenu" xPosition="before">
+        <button mat-menu-item>Profile</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </span>
+  </mat-toolbar>
+  <!-- Main Header End -->
+  <!-- Sidenav Start-->
+  <mat-sidenav-container
+    class="app-layout-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <mat-sidenav
+      #appSideNav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+    >
+      <app-nav></app-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <!-- Sidenav End-->
+  <!-- Main Footer -->
+  <!-- <app-footer></app-footer> -->
+</div>

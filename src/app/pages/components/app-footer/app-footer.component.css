@@ -1,0 +1,31 @@
+.footer {
+  background-color: #f1f1f1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-top: 1px solid #d1d1d1;
+  z-index: 999;
+}
+
+.footer .footer-block {
+  vertical-align: middle;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.footer-logo {
+  width: 200px;
+  margin: 0 auto;
+  padding-bottom: 25px;
+}

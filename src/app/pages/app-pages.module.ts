@@ -3,14 +3,12 @@ import { CommonModule } from '@angular/common';
 import { AppPagesRoutingModule } from './app-pages-routing.module';
 import { AppSharedModule } from '../app.shared.module';
 import { AppFormlyModule } from '../components/app-formly/app-formly.module';
-// import {
-//   AppHeaderComponent,
-//   AppFooterComponent,
-//   AppLayoutComponent,
-//   AppNavComponent,
-//   AppContentComponent,
-//   AppRefreshTokenComponent
-// } from '../components';
+import {
+  AppFooterComponent,
+  AppLayoutComponent,
+  AppNavComponent,
+  AppSearchComponent
+} from './components';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LandingComponent } from './landing/landing.component';
 
@@ -22,16 +20,13 @@ import { LandingComponent } from './landing/landing.component';
     AppFormlyModule
   ],
   declarations: [
-    // AppHeaderComponent,
-    // AppFooterComponent,
-    // AppLayoutComponent,
-    // AppNavComponent,
-    // AppContentComponent,
-    // AppRefreshTokenComponent,
+    AppFooterComponent,
+    AppLayoutComponent,
+    AppNavComponent,
+    AppSearchComponent,
     LandingComponent,
-    DashboardComponent,
+    DashboardComponent
   ],
-  providers: [
-  ]
+  providers: []
 })
 export class AppPagesModule {}

@@ -1,0 +1,23 @@
+<form [formGroup]="searchForm" class="search-form">
+  <mat-form-field floatLabel="never">
+    <input
+      matInput
+      color="primary"
+      type="text"
+      placeholder="Search"
+      formControlName="searchText"
+      [matAutocomplete]="searchAutoComplete"
+    />
+    <mat-icon matSuffix>search</mat-icon>
+    <mat-autocomplete #searchAutoComplete="matAutocomplete">
+      <mat-optgroup
+        *ngFor="let group of searchGroupOptions | async"
+        [label]="group.type"
+      >
+        <mat-option *ngFor="let option of group.options" [value]="option.id">
+          {{ option.title }}
+        </mat-option>
+      </mat-optgroup>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
