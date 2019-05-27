@@ -23,6 +23,10 @@ export class AppNavComponent implements OnInit {
       {
         title: 'Lookup',
         link: '/landing/lookup'
+      },
+      {
+        title: 'Stores',
+        link: '/landing/store'
       }
     ];
   }

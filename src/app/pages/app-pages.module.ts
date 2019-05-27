@@ -13,6 +13,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LandingComponent } from './landing/landing.component';
 import { LookupComponent } from './lookup/lookup.component';
 import { UserService, LookupService } from './services';
+import { StoreComponent } from './store/store.component';
+import { StoreService } from './services/store.service';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -28,8 +31,10 @@ import { UserService, LookupService } from './services';
     AppSearchComponent,
     LandingComponent,
     DashboardComponent,
-    LookupComponent
+    LookupComponent,
+    StoreComponent,
+    ProfileComponent
   ],
-  providers: [UserService, LookupService]
+  providers: [UserService, LookupService, StoreService]
 })
 export class AppPagesModule {}

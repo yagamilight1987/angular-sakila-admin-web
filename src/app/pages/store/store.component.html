@@ -1,0 +1,30 @@
+<div>
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let store of stores$ | async">
+      <mat-card>
+        <mat-card-content>
+          <div>
+            {{ store?.address?.address
+            }}<span *ngIf="store?.address?.address2"
+              >,{{ store?.address?.address2 }}</span
+            >
+          </div>
+          <div>
+            {{ store?.address?.district }}, {{ store?.address?.city.city }}
+          </div>
+          <div>
+            {{ store?.address?.city.country.country
+            }}<span *ngIf="store?.address?.city.postalCode">
+              - {{ store?.address?.city?.postalCode }}</span
+            >
+          </div>
+          <div>Location for Maps: {{ store?.address?.location }}</div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button>Get Manager</button>
+          <button>Show in Maps</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

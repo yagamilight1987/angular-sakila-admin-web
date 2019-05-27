@@ -1,0 +1,152 @@
+<div *ngIf="userData$ | async as userData">
+  <mat-card>
+    <mat-card-content>
+      <mat-grid-list cols="4" rowHeight="4:1">
+        <mat-grid-tile colspan="4">
+          <mat-toolbar>
+            Welcome!
+            <button
+              mat-button
+              color="primary"
+              (click)="onEditClicked()"
+              *ngIf="!isEdit"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-button
+              color="primary"
+              (click)="onSaveClicked()"
+              *ngIf="isEdit"
+            >
+              <mat-icon>save</mat-icon>
+            </button>
+            <button
+              mat-button
+              color="primary"
+              (click)="onCancelClicked()"
+              *ngIf="isEdit"
+            >
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-toolbar>
+        </mat-grid-tile>
+        <!-- <img [src]="picture.data" /> -->
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput [value]="userData.firstName" [disabled]="!isEdit" />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput [value]="userData.lastName" [disabled]="!isEdit" />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>User Name</mat-label>
+            <input matInput [value]="userData.username" [disabled]="!isEdit" />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput [value]="userData.email" [disabled]="!isEdit" />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Address 1</mat-label>
+            <input
+              matInput
+              [value]="userData.address.address"
+              [disabled]="!isEdit"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Address 2</mat-label>
+            <input
+              matInput
+              [value]="userData.address.address2"
+              [disabled]="!isEdit"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>District</mat-label>
+            <input
+              matInput
+              [value]="userData.address.district"
+              [disabled]="!isEdit"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Postal Code</mat-label>
+            <input
+              matInput
+              [value]="userData.address.postalCode"
+              [disabled]="!isEdit"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input
+              matInput
+              [value]="userData.address.phone"
+              [disabled]="!isEdit"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input
+              matInput
+              [value]="userData.address.city.city"
+              [disabled]="!isEdit"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Country</mat-label>
+            <input
+              matInput
+              [value]="userData.address.city.country.country"
+              [disabled]="!isEdit"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Update</mat-label>
+            <input
+              matInput
+              [value]="userData.lastUpdate"
+              [disabled]="!isEdit"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,18 @@
+.main-footer {
+  width: 100%;
+  font-size: 12px;
+}
+
+.main-footer-container {
+  display: flex;
+  justify-content: center;
+}
+
+.pad {
+  padding: 0 10px;
+}
+
+.version {
+  display: flex;
+  justify-content: center;
+}

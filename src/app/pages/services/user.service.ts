@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { SessionStorageService } from 'src/app/services';
 import { AppConstants } from 'src/app/app.constants';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserService {
   private userData: any;
 
-  constructor(private sessionStorageService: SessionStorageService) {}
+  constructor(
+    private http: HttpClient,
+    private sessionStorageService: SessionStorageService
+  ) {}
 
   get email(): string {
     this.getUserData();
@@ -26,6 +31,11 @@ export class UserService {
 
   logout() {
     this.sessionStorageService.clearAll();
+  }
+
+  getLoggedInUserDetails(id: number): Observable<any> {
+    const url = `${AppConstants.API_BASE_URL}staff/${id}`;
+    return this.http.get(url);
   }
 
   private getUserData(): any {
