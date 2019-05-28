@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FilmService } from '../services';
-import { Observable } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+import { FilmService } from '../services';
 
 @Component({
   selector: 'app-film',
@@ -9,7 +8,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./film.component.css']
 })
 export class FilmComponent implements OnInit {
-  films$: Observable<any>;
+  data: any;
   pagination: any;
   columnDefinitions: any[];
   headerRowDefinitions: any[];
@@ -22,7 +21,6 @@ export class FilmComponent implements OnInit {
       pageSize: 10
     };
     this.columnDefinitions = [
-      // { key: 'id', title: 'Id' },
       { key: 'title', title: 'Title' },
       { key: 'releaseYear', title: 'Release Year' },
       { key: 'rentalDuration', title: 'Rental Duration', type: 'days' },
@@ -34,7 +32,6 @@ export class FilmComponent implements OnInit {
     ];
 
     this.headerRowDefinitions = [
-      // 'id',
       'title',
       'releaseYear',
       'rentalDuration',
@@ -44,10 +41,14 @@ export class FilmComponent implements OnInit {
       'rating',
       'lastUpdate'
     ];
-    this.films$ = this.filmService.getFilmPaged(
-      this.pagination.pageNo,
-      this.pagination.pageSize
-    );
+
+    this.getFilmData();
+  }
+
+  getFilmData() {
+    this.filmService
+      .getFilmPaged(this.pagination.pageNo, this.pagination.pageSize)
+      .subscribe(resp => (this.data = resp));
   }
 
   pageOptionsChanged(event: PageEvent) {
@@ -57,6 +58,6 @@ export class FilmComponent implements OnInit {
       this.pagination.pageSize = event.pageSize;
     }
 
-    console.log(this.pagination);
+    this.getFilmData();
   }
 }
