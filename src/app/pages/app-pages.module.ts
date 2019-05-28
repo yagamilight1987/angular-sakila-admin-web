@@ -12,10 +12,19 @@ import {
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LandingComponent } from './landing/landing.component';
 import { LookupComponent } from './lookup/lookup.component';
-import { UserService, LookupService } from './services';
 import { StoreComponent } from './store/store.component';
-import { StoreService } from './services/store.service';
 import { ProfileComponent } from './profile/profile.component';
+import { FilmComponent } from './film/film.component';
+import { CustomerComponent } from './customer/customer.component';
+import { ActorComponent } from './actor/actor.component';
+import {
+  UserService,
+  LookupService,
+  StoreService,
+  FilmService,
+  ActorService,
+  CustomerService
+} from './services';
 
 @NgModule({
   imports: [
@@ -33,8 +42,18 @@ import { ProfileComponent } from './profile/profile.component';
     DashboardComponent,
     LookupComponent,
     StoreComponent,
-    ProfileComponent
+    ProfileComponent,
+    FilmComponent,
+    ActorComponent,
+    CustomerComponent
   ],
-  providers: [UserService, LookupService, StoreService]
+  providers: [
+    UserService,
+    LookupService,
+    StoreService,
+    FilmService,
+    ActorService,
+    CustomerService
+  ]
 })
 export class AppPagesModule {}

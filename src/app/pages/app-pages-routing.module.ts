@@ -5,6 +5,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LookupComponent } from './lookup/lookup.component';
 import { StoreComponent } from './store/store.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CustomerComponent } from './customer/customer.component';
+import { ActorComponent } from './actor/actor.component';
+import { FilmComponent } from './film/film.component';
 
 const routes: Routes = [
   {
@@ -31,6 +34,18 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent
+      },
+      {
+        path: 'film',
+        component: FilmComponent
+      },
+      {
+        path: 'actor',
+        component: ActorComponent
+      },
+      {
+        path: 'customer',
+        component: CustomerComponent
       }
     ]
   }

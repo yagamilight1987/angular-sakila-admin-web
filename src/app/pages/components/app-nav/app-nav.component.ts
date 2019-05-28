@@ -27,6 +27,18 @@ export class AppNavComponent implements OnInit {
       {
         title: 'Stores',
         link: '/landing/store'
+      },
+      {
+        title: 'Films',
+        link: '/landing/film'
+      },
+      {
+        title: 'Actors',
+        link: '/landing/actor'
+      },
+      {
+        title: 'Customers',
+        link: '/landing/customer'
       }
     ];
   }

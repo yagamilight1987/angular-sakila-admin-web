@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { httpInterceptorProviders } from './interceptors';
-import { EscapeHtmlPipe, CheckDatePipe } from './pipes';
+import { EscapeHtmlPipe, CheckDatePipe, LengthPipe } from './pipes';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,11 +19,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
   providers: [...httpInterceptorProviders, DatePipe],
-  declarations: [EscapeHtmlPipe, CheckDatePipe],
+  declarations: [EscapeHtmlPipe, CheckDatePipe, LengthPipe],
   exports: [
     FormsModule,
     ReactiveFormsModule,
@@ -31,6 +32,7 @@ import { MatCardModule } from '@angular/material/card';
     FormlyMaterialModule,
     EscapeHtmlPipe,
     CheckDatePipe,
+    LengthPipe,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
@@ -43,7 +45,8 @@ import { MatCardModule } from '@angular/material/card';
     MatSelectModule,
     MatTableModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule
   ]
 })
 export class AppSharedModule {}
