@@ -1,32 +1,53 @@
-<section class="overview padding-all">
-  <div class="box box-solid">
-    <div class="box-header">
-      <h3 class="box-title">Overview</h3>
-      <div class="box-tools pull-right">
-        <button
-          type="button"
-          class="btn btn-default btn-sm"
-          data-widget="remove"
+<div>
+  <div>
+    <mat-toolbar color="primary">
+      Sales By Store
+    </mat-toolbar>
+    <mat-card>
+      <div *ngIf="salesByStore$ | async as salesByStore" style="height: 250px;">
+        <ngx-charts-bar-horizontal
+          [results]="salesByStore"
+          [scheme]="salesByStoreConfig.colorScheme"
+          [gradient]="salesByStoreConfig.gradient"
+          [xAxis]="salesByStoreConfig.showXAxis"
+          [yAxis]="salesByStoreConfig.showYAxis"
+          [showXAxisLabel]="salesByStoreConfig.showXAxisLabel"
+          [showYAxisLabel]="salesByStoreConfig.showYAxisLabel"
+          [xAxisLabel]="salesByStoreConfig.xAxisLabel"
+          [yAxisLabel]="salesByStoreConfig.yAxisLabel"
+          [roundDomains]="salesByStoreConfig.roundDomains"
+          [legend]="salesByStoreConfig.showLegend"
+          [showDataLabel]="salesByStoreConfig.showDataLabel"
+          [barPadding]="salesByStoreConfig.barPadding"
         >
-          <i class="material-icons">
-            clear
-          </i>
-        </button>
+        </ngx-charts-bar-horizontal>
       </div>
-    </div>
-    <div class="box-body">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut cursus tempor
-      erat. Etiam varius elit vel diam rutrum, eu scelerisque massa facilisis.
-      Curabitur vel scelerisque nisl. Aliquam sit amet porta nisl. Mauris odio
-      nisi, scelerisque in aliquam nec, pharetra vel velit. Fusce molestie, odio
-      id mollis elementum, tortor libero luctus neque, in interdum nulla neque
-      non lectus. Cras dapibus lacus et iaculis dignissim. Proin sit amet
-      interdum est, et posuere erat. Suspendisse nec aliquet velit. Etiam ut
-      tristique nulla, eu cursus mi. Mauris ut faucibus tortor, eleifend luctus
-      erat. Maecenas nec libero felis. Duis a pretium velit. Nullam arcu justo,
-      lobortis dictum tellus vitae, tincidunt fringilla ante. Etiam faucibus mi
-      quis lorem laoreet placerat. Nam nec nisi fringilla, dignissim dui mollis,
-      pulvinar eros.
-    </div>
+    </mat-card>
   </div>
-</section>
+  <div>
+    <mat-toolbar color="primary">
+      Sales By Film Category
+    </mat-toolbar>
+    <mat-card>
+      <div *ngIf="salesByFilmCategory$ | async as salesByFilmCategory">
+        <ngx-charts-bar-horizontal
+          [results]="salesByFilmCategory"
+          [scheme]="salesByFilmCategoryConfig.colorScheme"
+          [schemeType]="salesByFilmCategoryConfig.schemeType"
+          [gradient]="salesByFilmCategoryConfig.gradient"
+          [xAxis]="salesByFilmCategoryConfig.showXAxis"
+          [yAxis]="salesByFilmCategoryConfig.showYAxis"
+          [showXAxisLabel]="salesByFilmCategoryConfig.showXAxisLabel"
+          [showYAxisLabel]="salesByFilmCategoryConfig.showYAxisLabel"
+          [xAxisLabel]="salesByFilmCategoryConfig.xAxisLabel"
+          [yAxisLabel]="salesByFilmCategoryConfig.yAxisLabel"
+          [roundDomains]="salesByFilmCategoryConfig.roundDomains"
+          [legend]="salesByFilmCategoryConfig.showLegend"
+          [showDataLabel]="salesByFilmCategoryConfig.showDataLabel"
+          [barPadding]="salesByFilmCategoryConfig.barPadding"
+        >
+        </ngx-charts-bar-horizontal>
+      </div>
+    </mat-card>
+  </div>
+</div>

@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
@@ -46,7 +47,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatGridListModule,
     MatCardModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxChartsModule
   ]
 })
 export class AppSharedModule {}

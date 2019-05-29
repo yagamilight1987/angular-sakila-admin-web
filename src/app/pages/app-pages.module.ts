@@ -23,7 +23,8 @@ import {
   StoreService,
   FilmService,
   ActorService,
-  CustomerService
+  CustomerService,
+  ReportService
 } from './services';
 
 @NgModule({
@@ -53,7 +54,8 @@ import {
     StoreService,
     FilmService,
     ActorService,
-    CustomerService
+    CustomerService,
+    ReportService
   ]
 })
 export class AppPagesModule {}
