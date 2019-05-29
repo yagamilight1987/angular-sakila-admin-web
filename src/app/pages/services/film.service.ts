@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class FilmService {
   constructor(private http: HttpClient) {}
 
-  getFilmPaged(pageNo: any, pageSize: any): Observable<any> {
+  getPagedData(pageNo: any, pageSize: any): Observable<any> {
     const url = `${AppConstants.API_BASE_URL}film/page`;
     const data = {
       skip: pageNo * pageSize,

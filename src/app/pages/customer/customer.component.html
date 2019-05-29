@@ -1,3 +1,70 @@
-<p>
-  Under construction!
-</p>
+<div>
+  <mat-toolbar> <mat-icon>person</mat-icon> Customers </mat-toolbar>
+  <div *ngIf="data">
+    <div>
+      All Customers ({{ data.totalRecords }})
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select (selectionChange)="onCategorySelectChanged($event)">
+          <mat-option [value]="">
+            Select
+          </mat-option>
+          <mat-option>
+            Action
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sort By</mat-label>
+        <mat-select (selectionChange)="onSortBySelectChanged($event)">
+          <mat-option [value]="">
+            Select
+          </mat-option>
+          <mat-option>
+            Title Ascending
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="data.data" class="mat-elevation-z8">
+      <ng-container
+        *ngFor="let columnDef of columnDefinitions"
+        [matColumnDef]="columnDef.key"
+      >
+        <th mat-header-cell *matHeaderCellDef>{{ columnDef.title }}</th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container [ngSwitch]="columnDef.type">
+            <ng-container *ngSwitchCase="'days'">
+              {{ element[columnDef.key] }} days
+            </ng-container>
+            <ng-container *ngSwitchCase="'rate'">
+              $ {{ element[columnDef.key] }}
+            </ng-container>
+            <ng-container *ngSwitchCase="'length'">
+              {{ element[columnDef.key] | length }}
+            </ng-container>
+            <ng-container *ngSwitchCase="'date'">
+              {{ element[columnDef.key] | checkDate }}
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              {{ element[columnDef.key] }}
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="headerRowDefinitions"></tr>
+      <tr mat-row *matRowDef="let row; columns: headerRowDefinitions"></tr>
+    </table>
+
+    <mat-paginator
+      [length]="data.totalRecords"
+      [pageIndex]="pagination.pageNo"
+      [pageSize]="pagination.pageSize"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      showFirstLastButtons="true"
+      (page)="pageOptionsChanged($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>

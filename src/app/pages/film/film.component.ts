@@ -42,12 +42,12 @@ export class FilmComponent implements OnInit {
       'lastUpdate'
     ];
 
-    this.getFilmData();
+    this.getData();
   }
 
-  getFilmData() {
+  getData() {
     this.filmService
-      .getFilmPaged(this.pagination.pageNo, this.pagination.pageSize)
+      .getPagedData(this.pagination.pageNo, this.pagination.pageSize)
       .subscribe(resp => (this.data = resp));
   }
 
@@ -58,6 +58,6 @@ export class FilmComponent implements OnInit {
       this.pagination.pageSize = event.pageSize;
     }
 
-    this.getFilmData();
+    this.getData();
   }
 }
