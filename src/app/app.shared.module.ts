@@ -20,7 +20,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
@@ -48,7 +50,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatGridListModule,
     MatCardModule,
     MatPaginatorModule,
-    NgxChartsModule
+    MatExpansionModule,
+    NgxChartsModule,
+    FlexLayoutModule
   ]
 })
 export class AppSharedModule {}

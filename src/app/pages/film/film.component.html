@@ -1,31 +1,191 @@
 <div>
-  <mat-toolbar> <mat-icon>movie_filter</mat-icon> Films </mat-toolbar>
+  <mat-toolbar color="primary">
+    <mat-icon>movie_filter</mat-icon> Films
+  </mat-toolbar>
+  <mat-accordion class="search-container">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Search Form
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="search-container" *ngIf="lookupData$ | async as lookupData">
+        <form [formGroup]="searchForm" (ngSubmit)="getData()">
+          <div
+            class="container"
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="5%"
+            fxLayoutAlign="start stretch"
+          >
+            <div fxFlex="20%">
+              <mat-form-field>
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option [value]="">
+                    Select
+                  </mat-option>
+                  <mat-option
+                    *ngFor="let category of category$ | async"
+                    [value]="category.categoryId"
+                  >
+                    {{ category.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20%">
+              <mat-form-field>
+                <mat-label>Language</mat-label>
+                <mat-select formControlName="language">
+                  <mat-option [value]="">
+                    Select
+                  </mat-option>
+                  <mat-option
+                    *ngFor="let lang of language$ | async"
+                    [value]="lang.languageId"
+                  >
+                    {{ lang.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20%">
+              <mat-form-field>
+                <mat-label>Rental Rate</mat-label>
+                <mat-select formControlName="rentalRate">
+                  <mat-option [value]="">
+                    Select
+                  </mat-option>
+                  <mat-option
+                    *ngFor="let rate of lookupData.rentalRateList"
+                    [value]="rate"
+                    >${{ rate }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20%">
+              <mat-form-field>
+                <mat-label>Film Length</mat-label>
+                <mat-select formControlName="filmLengthId">
+                  <mat-option [value]="">
+                    Select
+                  </mat-option>
+                  <mat-option
+                    *ngFor="let length of lookupData.filmLengthList"
+                    [value]="length.id"
+                    >{{ length.text }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div
+            class="container"
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="5%"
+            fxLayoutAlign="start stretch"
+          >
+            <div fxFlex="20%">
+              <mat-form-field>
+                <mat-label>Rental Duration</mat-label>
+                <mat-select formControlName="rentalDuration">
+                  <mat-option [value]="">
+                    Select
+                  </mat-option>
+                  <mat-option
+                    *ngFor="let duration of lookupData.rentalDurationList"
+                    [value]="duration"
+                    >{{ duration }} days</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20%">
+              <mat-form-field>
+                <mat-label>Release Year</mat-label>
+                <mat-select formControlName="releaseYear">
+                  <mat-option [value]="">
+                    Select
+                  </mat-option>
+                  <mat-option
+                    *ngFor="let year of lookupData.releaseYearList"
+                    [value]="year"
+                    >{{ year }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20%">
+              <mat-form-field>
+                <mat-label>Film Rating</mat-label>
+                <mat-select formControlName="filmRating">
+                  <mat-option [value]="">
+                    Select
+                  </mat-option>
+                  <mat-option
+                    *ngFor="let rating of lookupData.filmRatingList"
+                    [value]="rating"
+                    >{{ rating }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20%">
+              <mat-form-field>
+                <mat-label>Sort By</mat-label>
+                <mat-select formControlName="sort">
+                  <mat-option [value]="">
+                    Select
+                  </mat-option>
+                  <mat-option>
+                    Title Ascending
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div
+            class="container"
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="2.5%"
+            fxLayoutAlign="center"
+          >
+            <span fxFlex="90%"></span>
+            <button
+              mat-raised-button
+              color="warning"
+              type="button"
+              fxFlex="10%"
+              (click)="reset()"
+            >
+              Reset
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="loading"
+              fxFlex="10%"
+            >
+              <i class="material-icons" *ngIf="loading">
+                autorenew
+              </i>
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
   <div *ngIf="data">
-    <div>
-      All Films ({{ data.totalRecords }})
-      <mat-form-field>
-        <mat-label>Category</mat-label>
-        <mat-select (selectionChange)="onCategorySelectChanged($event)">
-          <mat-option [value]="">
-            Select
-          </mat-option>
-          <mat-option>
-            Action
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Sort By</mat-label>
-        <mat-select (selectionChange)="onSortBySelectChanged($event)">
-          <mat-option [value]="">
-            Select
-          </mat-option>
-          <mat-option>
-            Title Ascending
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+    <mat-toolbar> All Films ({{ data?.totalRecords }}) </mat-toolbar>
     <table mat-table [dataSource]="data.data" class="mat-elevation-z8">
       <ng-container
         *ngFor="let columnDef of columnDefinitions"

@@ -7,12 +7,13 @@ import { Observable } from 'rxjs';
 export class FilmService {
   constructor(private http: HttpClient) {}
 
-  getPagedData(pageNo: any, pageSize: any): Observable<any> {
+  getPagedData(data: any): Observable<any> {
     const url = `${AppConstants.API_BASE_URL}film/page`;
-    const data = {
-      skip: pageNo * pageSize,
-      take: pageSize
-    };
     return this.http.post(url, data);
+  }
+
+  getLookupData(): Observable<any> {
+    const url = `${AppConstants.API_BASE_URL}film/lookup`;
+    return this.http.get(url);
   }
 }

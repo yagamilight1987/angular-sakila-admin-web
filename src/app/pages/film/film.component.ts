@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
-import { FilmService } from '../services';
+import { FilmService, LookupService } from '../services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-film',
@@ -8,14 +10,33 @@ import { FilmService } from '../services';
   styleUrls: ['./film.component.css']
 })
 export class FilmComponent implements OnInit {
+  searchForm: FormGroup;
+  lookupData$: Observable<any>;
+  category$: Observable<any>;
+  language$: Observable<any>;
   data: any;
   pagination: any;
   columnDefinitions: any[];
   headerRowDefinitions: any[];
 
-  constructor(private filmService: FilmService) {}
+  constructor(
+    private fb: FormBuilder,
+    private filmService: FilmService,
+    private lookupService: LookupService
+  ) {}
 
   ngOnInit() {
+    this.searchForm = this.fb.group({
+      category: '',
+      language: '',
+      rentalRate: '',
+      filmLengthId: '',
+      rentalDuration: '',
+      releaseYear: '',
+      filmRating: '',
+      sort: ''
+    });
+    this.getLookupData();
     this.pagination = {
       pageNo: 0,
       pageSize: 10
@@ -45,10 +66,43 @@ export class FilmComponent implements OnInit {
     this.getData();
   }
 
+  getLookupData() {
+    this.category$ = this.lookupService.getLookupData('category');
+    this.language$ = this.lookupService.getLookupData('language');
+    this.lookupData$ = this.filmService.getLookupData();
+  }
+
   getData() {
-    this.filmService
-      .getPagedData(this.pagination.pageNo, this.pagination.pageSize)
-      .subscribe(resp => (this.data = resp));
+    const formData = this.searchForm.value;
+    const data: any = {
+      skip: this.pagination.pageNo * this.pagination.pageSize,
+      take: this.pagination.pageSize
+    };
+    if (this.searchForm.valid && formData) {
+      if (formData.category) {
+        data.category = formData.category;
+      }
+      if (formData.releaseYear) {
+        data.releaseYear = formData.releaseYear;
+      }
+      if (formData.language) {
+        data.languageId = formData.language;
+      }
+      if (formData.rentalDuration) {
+        data.rentalDuration = formData.rentalDuration;
+      }
+      if (formData.rentalRate) {
+        data.rentalRate = formData.rentalRate;
+      }
+      if (formData.filmLengthId) {
+        data.lengthId = formData.filmLengthId;
+      }
+      if (formData.filmRating) {
+        data.rating = formData.filmRating;
+      }
+    }
+
+    this.filmService.getPagedData(data).subscribe(resp => (this.data = resp));
   }
 
   pageOptionsChanged(event: PageEvent) {
@@ -59,5 +113,9 @@ export class FilmComponent implements OnInit {
     }
 
     this.getData();
+  }
+
+  reset() {
+    this.searchForm.reset();
   }
 }
