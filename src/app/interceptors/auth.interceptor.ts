@@ -1,16 +1,27 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest
+  HttpRequest,
+  HttpErrorResponse
 } from '@angular/common/http';
+import { HelperService, SessionStorageService } from '../services';
 import { Observable } from 'rxjs';
-import { HelperService } from '../services';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private helperService: HelperService) {}
+  isRefreshingToken: boolean;
+
+  constructor(
+    private router: Router,
+    private helperService: HelperService,
+    private sessionStorageService: SessionStorageService
+  ) {
+    this.isRefreshingToken = false;
+  }
 
   intercept(
     req: HttpRequest<any>,
@@ -26,6 +37,18 @@ export class AuthInterceptor implements HttpInterceptor {
     const authReq = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${accessToken}`)
     });
-    return next.handle(authReq);
+    return next.handle(authReq).pipe(
+      tap(
+        success => success,
+        error => {
+          if (error instanceof HttpErrorResponse) {
+            if (error.status === 401) {
+              this.sessionStorageService.clearAll();
+              return this.router.navigate(['/auth/login']);
+            }
+          }
+        }
+      )
+    );
   }
 }
