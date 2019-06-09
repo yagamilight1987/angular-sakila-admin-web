@@ -21,6 +21,16 @@
           >
             <div fxFlex="20%">
               <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input
+                  matInput
+                  placeholder="Enter title"
+                  formControlName="title"
+                />
+              </mat-form-field>
+            </div>
+            <div fxFlex="20%">
+              <mat-form-field>
                 <mat-label>Category</mat-label>
                 <mat-select formControlName="category">
                   <mat-option [value]="">
@@ -66,6 +76,15 @@
                 </mat-select>
               </mat-form-field>
             </div>
+          </div>
+          <div
+            class="container"
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="5%"
+            fxLayoutAlign="start stretch"
+          >
             <div fxFlex="20%">
               <mat-form-field>
                 <mat-label>Film Length</mat-label>
@@ -81,15 +100,6 @@
                 </mat-select>
               </mat-form-field>
             </div>
-          </div>
-          <div
-            class="container"
-            fxLayout="row"
-            fxLayout.xs="column"
-            fxLayoutWrap
-            fxLayoutGap="5%"
-            fxLayoutAlign="start stretch"
-          >
             <div fxFlex="20%">
               <mat-form-field>
                 <mat-label>Rental Duration</mat-label>
@@ -132,19 +142,6 @@
                     [value]="rating"
                     >{{ rating }}</mat-option
                   >
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div fxFlex="20%">
-              <mat-form-field>
-                <mat-label>Sort By</mat-label>
-                <mat-select formControlName="sort">
-                  <mat-option [value]="">
-                    Select
-                  </mat-option>
-                  <mat-option>
-                    Title Ascending
-                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

@@ -27,6 +27,7 @@ export class FilmComponent implements OnInit {
 
   ngOnInit() {
     this.searchForm = this.fb.group({
+      title: '',
       category: '',
       language: '',
       rentalRate: '',
@@ -79,6 +80,9 @@ export class FilmComponent implements OnInit {
       take: this.pagination.pageSize
     };
     if (this.searchForm.valid && formData) {
+      if (formData.title) {
+        data.title = formData.title;
+      }
       if (formData.category) {
         data.category = formData.category;
       }
@@ -117,5 +121,6 @@ export class FilmComponent implements OnInit {
 
   reset() {
     this.searchForm.reset();
+    this.getData();
   }
 }
