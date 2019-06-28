@@ -1,3 +1,11 @@
 table {
   width: 100%;
 }
+
+.search-container {
+  padding: 0 10px;
+}
+
+.mat-form-field {
+  width: 100%;
+}

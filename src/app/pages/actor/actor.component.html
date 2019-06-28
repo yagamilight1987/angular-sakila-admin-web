@@ -1,31 +1,82 @@
 <div>
-  <mat-toolbar> <mat-icon>recent_actors</mat-icon> Actors </mat-toolbar>
+  <mat-toolbar color="primary">
+    <mat-icon>recent_actors</mat-icon> Actors
+  </mat-toolbar>
+  <mat-accordion class="search-container">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Search Form
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="search-container">
+        <form [formGroup]="searchForm" (ngSubmit)="getData()">
+          <div
+            class="container"
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="5%"
+            fxLayoutAlign="start stretch"
+          >
+            <div fxFlex="20%">
+              <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Enter first name"
+                  formControlName="firstName"
+                />
+              </mat-form-field>
+            </div>
+            <div fxFlex="20%">
+              <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Enter last name"
+                  formControlName="lastName"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+          <div
+            class="container"
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="2.5%"
+            fxLayoutAlign="center"
+          >
+            <span fxFlex="90%"></span>
+            <button
+              mat-raised-button
+              color="warning"
+              type="button"
+              fxFlex="10%"
+              (click)="reset()"
+            >
+              Reset
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="loading"
+              fxFlex="10%"
+            >
+              <i class="material-icons" *ngIf="loading">
+                autorenew
+              </i>
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
   <div *ngIf="data">
-    <div>
-      All Actors ({{ data.totalRecords }})
-      <mat-form-field>
-        <mat-label>Category</mat-label>
-        <mat-select (selectionChange)="onCategorySelectChanged($event)">
-          <mat-option [value]="">
-            Select
-          </mat-option>
-          <mat-option>
-            Action
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Sort By</mat-label>
-        <mat-select (selectionChange)="onSortBySelectChanged($event)">
-          <mat-option [value]="">
-            Select
-          </mat-option>
-          <mat-option>
-            Title Ascending
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+    <mat-toolbar> All Actors ({{ data?.totalRecords }}) </mat-toolbar>
     <table mat-table [dataSource]="data.data" class="mat-elevation-z8">
       <ng-container
         *ngFor="let columnDef of columnDefinitions"

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActorService } from '../services';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
+import { ActorService } from '../services';
 
 @Component({
   selector: 'app-actor',
@@ -8,14 +9,19 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./actor.component.css']
 })
 export class ActorComponent implements OnInit {
+  searchForm: FormGroup;
   data: any;
   pagination: any;
   columnDefinitions: any[];
   headerRowDefinitions: any[];
 
-  constructor(private actorService: ActorService) {}
+  constructor(private fb: FormBuilder, private actorService: ActorService) {}
 
   ngOnInit() {
+    this.searchForm = this.fb.group({
+      firstName: '',
+      lastName: ''
+    });
     this.pagination = {
       pageNo: 0,
       pageSize: 10
@@ -32,9 +38,24 @@ export class ActorComponent implements OnInit {
   }
 
   getData() {
-    this.actorService
-      .getPagedData(this.pagination.pageNo, this.pagination.pageSize)
-      .subscribe(resp => (this.data = resp));
+    const formData = this.searchForm.value;
+    const data: any = {
+      skip: this.pagination.pageNo * this.pagination.pageSize,
+      take: this.pagination.pageSize
+    };
+    if (this.searchForm.valid && formData) {
+      if (formData.firstName) {
+        data.firstName = formData.firstName;
+      }
+      if (formData.lastName) {
+        data.lastName = formData.lastName;
+      }
+      if (formData.email) {
+        data.email = formData.email;
+      }
+    }
+
+    this.actorService.getPagedData(data).subscribe(resp => (this.data = resp));
   }
 
   pageOptionsChanged(event: PageEvent) {
@@ -44,6 +65,11 @@ export class ActorComponent implements OnInit {
       this.pagination.pageSize = event.pageSize;
     }
 
+    this.getData();
+  }
+
+  reset() {
+    this.searchForm.reset();
     this.getData();
   }
 }

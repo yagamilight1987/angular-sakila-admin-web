@@ -21,6 +21,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -51,6 +52,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatCardModule,
     MatPaginatorModule,
     MatExpansionModule,
+    MatCheckboxModule,
     NgxChartsModule,
     FlexLayoutModule
   ]

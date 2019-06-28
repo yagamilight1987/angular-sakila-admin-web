@@ -7,12 +7,8 @@ import { Observable } from 'rxjs';
 export class ActorService {
   constructor(private http: HttpClient) {}
 
-  getPagedData(pageNo: any, pageSize: any): Observable<any> {
+  getPagedData(data: any): Observable<any> {
     const url = `${AppConstants.API_BASE_URL}actor/page`;
-    const data = {
-      skip: pageNo * pageSize,
-      take: pageSize
-    };
     return this.http.post(url, data);
   }
 }
